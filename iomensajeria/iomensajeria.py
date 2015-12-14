@@ -16,7 +16,6 @@ class IOMensajeria(object):
     Ofrece posibilidad de que la salida sea a través
     de la consola"""
 
-    error   = 0
     foutput = None
     data    = None
 
@@ -35,9 +34,10 @@ class IOMensajeria(object):
                 # print self.data
                 self.log("Datos de entrada: " + str(self.data))
         except IOError as err:
-            self.error = 1
-            print "El fichero no existe (" + str(err) + ")"
-            print "*" * 50 + "\n"
+			template = "An exception of type {0} occured. Arguments:\n{1!r}"
+			message = template.format(type(err).__name__, err.args)
+			print message            
+			print "*" * 50 + "\n"
 
     def log(self, mensaje):
         """Grabamos mensaje de log en la salida definida"""
@@ -50,9 +50,6 @@ class IOMensajeria(object):
                     data.write("\n")
             except IOError as err:
                 print err
-
-    def get_error(self):
-        return self.error
 
     def get_data(self):
         return self.data

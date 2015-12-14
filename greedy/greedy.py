@@ -8,13 +8,17 @@ class Greedy(object):
     Se deben realizar el menor número de paradas
     posibles durante el recorrido de la ruta"""
 
+    solution = None
+    candidates = None
+	
     def __init__(self, vehiculo, ioMensajeria):
-        self.vehiculo         = vehiculo
-        self.ioMensajeria     = ioMensajeria
+        self.vehiculo		= vehiculo
+        self.ioMensajeria   = ioMensajeria
+        self.candidates		= vehiculo.get_ruta().get_listaparadas()
 
-        print "Greedy data."
-        print self.vehiculo.get_gas()
-        print self.vehiculo.get_ruta().get_listaparadas()
+        #print "Greedy data."
+        #print self.vehiculo.get_gas()
+        #print self.vehiculo.get_ruta().get_listaparadas()
 
         self.ioMensajeria.log("Greedy data.")
         self.ioMensajeria.log("Autonomía del vehículo en Kms: " + str(self.vehiculo.get_gas()))

@@ -13,27 +13,51 @@ import mensajeria
 class MensajeriaTest(unittest.TestCase):
 
     def test_file_input_exist_with_data(self):
-        print "Test file exist with data"
-        m = mensajeria.Mensajeria(fin='test', fout=None)
+        print "="*75
+        print "Test file exist with data (test_file_input_exist_with_data)"
+        print "="*75
+        m = mensajeria.Mensajeria(fin='test', fout=False)
+        m.init()
         data = m.get_data()
+        print "Deberiamos obtener datos"
         print "Test Data: " + str(data) + "\n"
         self.assertIsNotNone(data)
-
+		
     def test_file_input_exist_without_data(self):
-        print "Test file exist without data"
-        m = mensajeria.Mensajeria(fin='test_no_data', fout=None)
+        print "="*75
+        print "Test file exist without data (test_file_input_exist_without_data)"
+        print "="*75
+        m = mensajeria.Mensajeria(fin='test_no_data', fout=False)
+        m.init()
         data = m.get_data()
-        print "Deberiamos objeter una lista vacia []"
+        print "Deberiamos objeter data = None"
         print "Test Data: " + str(data) + "\n"
-        self.assertListEqual(data,[])
+        #self.assertListEqual(data,[])
+        self.assertIsNone(data)
 
     def test_file_input_not_exist(self):
-        print "Test file does not exist"
-        m = mensajeria.Mensajeria(fin='thisfiledoesnotexist', fout=None)
+        print "="*75
+        print "Test file does not exist (test_file_input_not_exist)"
+        print "="*75
+        m = mensajeria.Mensajeria(fin='thisfiledoesnotexist', fout=False)
+        #self.assertRaises(TypeError, lambda: m.init())
+        m.init()
         data = m.get_data()
-        print "Deberiamos obtener None"
+        print "Deberiamos objeter data = None"
         print "Test Data: " + str(data) + "\n"
         self.assertIsNone(data)
 
+    def test_file_input_wrong_data(self):
+        print "="*75
+        print "Test file exist with wrong data (test_file_input_wrong_data)"
+        print "="*75
+        m = mensajeria.Mensajeria(fin='test_wrong_data', fout=False)
+        m.init()
+        data = m.get_data()
+        print "Deberiamos objeter data = None"
+        print "Test Data: " + str(data) + "\n"
+        self.assertIsNone(data)
+        #self.assertRaises(IOError, lambda: m.init())		
+		
 if __name__ == '__main__':
     unittest.main()
