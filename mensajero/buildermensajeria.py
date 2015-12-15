@@ -12,7 +12,6 @@ class BuilderMensajeria(object):
     paradas"""
 
     mensajeria 		= None
-    ioMmensajeria 	= None
     data			= None
     vehiculo        = None
     error        	= 0
@@ -25,16 +24,13 @@ class BuilderMensajeria(object):
         de entrada respecto a capacidad y distancias
         """
 
-        # Datos proporcionados por fichero
-        self.ioMensajeria 	= ioMensajeria
-
-        self.ioMensajeria.log(data)
-
         try:
             # Crear vehívulo
             self.build_vehiculo(data)
+            ioMensajeria.log("Vehículo creado satisfactoriamente")
             # Crear ruta
             self.build_ruta(data)
+            ioMensajeria.log("Ruta creada satisfactoriamente")
             # Asignar rutal al vehículo
             self.vehiculo.set_ruta(self.ruta)
         except (ValueError, AttributeError) as err:
@@ -82,9 +78,6 @@ class BuilderMensajeria(object):
 
     def get_vehiculo(self):
         return self.vehiculo
-
-    def get_ioMensajeria(self):
-        return self.ioMensajeria
 
     def get_error(self):
         return self.error

@@ -11,9 +11,6 @@ class Vehiculo(object):
         self.gas = gas
         self.ruta = ruta
 
-        print "Datos del coche."
-        print "Tanque de combustible del vehículo: " + str(self.gas)
-
     def set_ruta(self, ruta):
         self.ruta = ruta
 

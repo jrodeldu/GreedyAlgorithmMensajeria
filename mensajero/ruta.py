@@ -9,14 +9,9 @@ class Ruta(object):
     listaparadas = None
 
     def __init__(self, data):
-
         mydata 				= data[:]
         self.nparadas 		= len(mydata)
         self.listaparadas 	= data
-
-        print "Datos de la ruta."
-        print self.nparadas
-        print self.listaparadas
 
     def get_listaparadas(self):
         return self.listaparadas
