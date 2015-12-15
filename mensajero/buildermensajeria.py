@@ -15,6 +15,7 @@ class BuilderMensajeria(object):
     ioMmensajeria 	= None
     data			= None
     vehiculo        = None
+    error        	= 0
 
     def __init__(self, data, ioMensajeria=None):
         """
@@ -23,14 +24,14 @@ class BuilderMensajeria(object):
         que pueda provocar la información del fichero
         de entrada respecto a capacidad y distancias
         """
-	
+
         # Datos proporcionados por fichero
         self.ioMensajeria 	= ioMensajeria
 
         self.ioMensajeria.log(data)
 
         try:
-		    # Crear vehívulo
+            # Crear vehívulo
             self.build_vehiculo(data)
             # Crear ruta
             self.build_ruta(data)
@@ -41,6 +42,7 @@ class BuilderMensajeria(object):
             message = template.format(type(err).__name__, err.args)
             print message
             print "*" * 50 + "\n"
+            self.error = 1
             # self.mensajeria.init()
 
     def build_vehiculo(self, data):
@@ -83,3 +85,6 @@ class BuilderMensajeria(object):
 
     def get_ioMensajeria(self):
         return self.ioMensajeria
+
+    def get_error(self):
+        return self.error

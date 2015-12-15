@@ -36,7 +36,7 @@ class Mensajeria(object):
             template = "An exception of type {0} occured. Arguments:\n{1!r}"
             message = template.format(type(err).__name__, err.args)
             print message
-	
+
     def restart(self):
         self.fin            = None
         self.fout           = True
@@ -52,8 +52,8 @@ class Mensajeria(object):
                     break
                 else:
                     sys.exit()
-                
-	
+
+
     def define_in_out(self):
         # Definir entrada y salida
         self.define_output()
@@ -94,8 +94,7 @@ class Mensajeria(object):
         """Una vez definidos la entrada y salida del programa se
         procede a construir la aplicación y ejecutar el algoritmo"""
         self.myBuild = builder.BuilderMensajeria(self.data, self.ioMensajeria)
-        vehiculo = self.myBuild.get_vehiculo()
-        if vehiculo is not None:
+        if not self.myBuild.get_error():
             myGreedy = Greedy(self.myBuild.get_vehiculo(), self.ioMensajeria)
             myGreedy.execute()
         else:
@@ -114,4 +113,3 @@ class Mensajeria(object):
 if __name__ == "__main__":
     a = Mensajeria()
     a.init()
-	
